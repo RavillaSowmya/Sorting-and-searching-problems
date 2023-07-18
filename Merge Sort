@@ -1,0 +1,32 @@
+def merge_sort(arr,low,high):
+    if(low>=high):
+        return 0
+    
+    mid=(low+high)//2
+    merge_sort(arr,low,mid)
+    merge_sort(arr,mid+1,high)
+    return merge(arr,low,mid,high)
+def merge(arr,low,mid,high):
+    p1=low
+    p2=mid+1 
+    temp=[]
+    while(p1<=mid and p2<=high):
+        if(arr[p1]<=arr[p2]):
+            temp.append(arr[p1])
+            p1+=1 
+        else:
+            temp.append(arr[p2])
+            p2=p2+1 
+    while(p1<=mid):
+        temp.append(arr[p1])
+        p1+= 1 
+    while(p2<=high):
+        temp.append(arr[p2])
+        p2=p2+1 
+    for i in range(len(temp)):
+        arr[i+low]=temp[i]
+    return arr
+ 
+arr = [12, 11, 13, 5, 6, 7]
+print(merge_sort(arr,0,len(arr)-1))
+
